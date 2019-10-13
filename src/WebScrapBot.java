@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.util.ArrayList;
+
 import org.jsoup.*;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -6,19 +8,15 @@ import org.jsoup.select.Elements;
 
 public class WebScrapBot 
 {
-	public WebScrapBot(String url, String newspaper)
+	ArrayList<String> busquedas;
+	
+	public WebScrapBot(String url, String newspaper) throws IOException
 	{			
-			try
-			{
-				extraerMundo(url, newspaper);
-			}
-			catch(Exception e)
-			{
-				
-			}
+			busquedas = new ArrayList<String>(); 
+			extraerMundo(url, newspaper);			
 	}	
 	
-	public static void extraerMundo(String url, String newspaper) throws IOException
+	public void extraerMundo(String url, String newspaper) throws IOException
 	{
 		Document doc = Jsoup.connect(url).get();
 		
@@ -27,8 +25,13 @@ public class WebScrapBot
 		for(Element link : links)
 		{
 			if(link.attr("href").contains(newspaper) && !link.attr("href").contains("http://"))
-				System.out.println(link.attr("href"));
+				this.busquedas.add(link.attr("href"));
 		}
+	}
+	
+	public ArrayList<String> getBusquedas()
+	{
+		return this.busquedas;
 	}
 	
 	

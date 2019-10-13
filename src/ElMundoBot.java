@@ -1,7 +1,11 @@
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Scanner;
 
 public class ElMundoBot {
-	public static void main(String [] args)
+	public static void main(String [] args) throws URISyntaxException, IOException
 	{
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
@@ -13,5 +17,15 @@ public class ElMundoBot {
 		String newspaper = "//www.elmundo.es/";
 		
 		WebScrapBot wsb = new WebScrapBot(url, newspaper);
+		
+		for(int i = 0; i <= 5; i++)
+		{
+			int random = (int)(Math.random() * wsb.getBusquedas().size()+1);
+			URI uri = new URI(wsb.getBusquedas().get(random));
+			
+			Desktop.getDesktop().browse(uri);
+		}
+	
+		System.out.println("Done");
 	}
 }
