@@ -8,31 +8,34 @@ import org.jsoup.select.Elements;
 
 public class WebScrapBot 
 {
-	ArrayList<String> busquedas;
+	private ArrayList<String> links;
+	private String url;
 	
-	public WebScrapBot(String url, String newspaper) throws IOException
+	public WebScrapBot(String url) throws IOException
 	{			
-			busquedas = new ArrayList<String>(); 
-			extraerMundo(url, newspaper);			
+	        this.url = url;
+			links = new ArrayList<String>(); 
 	}	
 	
-	public void extraerMundo(String url, String newspaper) throws IOException
+	public void extraer(String url, ArrayList<String> datos) throws IOException
 	{
 		Document doc = Jsoup.connect(url).get();
+
+		Elements result = doc.select(datos.get(0)).select(datos.get(1)).select(datos.get(2)).select(datos.get(3));
 		
-		Elements links = doc.getElementsByTag("a");
-		
-		for(Element link : links)
+		for(Element element : result)
 		{
-			if(link.attr("href").contains(newspaper) && !link.attr("href").contains("http://"))
-				this.busquedas.add(link.attr("href"));
+		    links.add(element.attr("href"));
 		}
+
 	}
 	
-	public ArrayList<String> getBusquedas()
+	public ArrayList<String> getLinks()
 	{
-		return this.busquedas;
+		return this.links;
 	}
-	
-	
+
+    public String getUrl() {
+        return url;
+    }	
 }
