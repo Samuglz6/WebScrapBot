@@ -21,13 +21,14 @@ public class WebScrapBot
 	{
 		Document doc = Jsoup.connect(url).get();
 
-		Elements result = doc.select(datos.get(0)).select(datos.get(1)).select(datos.get(2)).select(datos.get(3));
+		Elements result = doc.select(datos.get(0));
 		
 		for(Element element : result)
 		{
 		    links.add(element.attr("href"));
 		}
-
+		
+		//System.out.println(result);
 	}
 	
 	public ArrayList<String> getLinks()
@@ -37,5 +38,5 @@ public class WebScrapBot
 
     public String getUrl() {
         return url;
-    }	
+    }
 }
