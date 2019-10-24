@@ -16,10 +16,17 @@ public class Main {
             
             WebScrapBot bbc = new BBCBot(busqueda);
             WebScrapBot mundo = new ElMundoBot(busqueda);
+            WebScrapBot abc = new ABCBot(busqueda);
             
             //This line will print each element from the ArrayList in a new line
+            System.out.println("\nBBC BOT");
             bbc.getLinks().forEach(System.out::println);
+
+            System.out.println("\nEL MUNDO BOT");
             mundo.getLinks().forEach(System.out::println);
+            
+            System.out.println("\nABC BOT");
+            abc.getLinks().forEach(System.out::println);
             
             /*for(int i = 0; i <= 5; i++)
             {
