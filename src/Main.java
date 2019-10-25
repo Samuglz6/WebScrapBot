@@ -15,24 +15,29 @@ public class Main {
             String busqueda = sc.nextLine();
             
             WebScrapBot bbc = new BBCBot(busqueda);
-            WebScrapBot mundo = new ElMundoBot(busqueda);
-            WebScrapBot abc = new ABCBot(busqueda);
-            
-            //This line will print each element from the ArrayList in a new line
             System.out.println("\nBBC BOT");
-            bbc.getLinks().forEach(System.out::println);
+            System.out.println(bbc.getLinks().size());
+            
+            //WebScrapBot mundo = new ElMundoBot(busqueda);
+            //WebScrapBot abc = new ABCBot(busqueda);
+            
+            
+            
+           
 
             System.out.println("\nEL MUNDO BOT");
-            mundo.getLinks().forEach(System.out::println);
+           
             
             System.out.println("\nABC BOT");
-            abc.getLinks().forEach(System.out::println);
+          
             
-            /*for(int i = 0; i <= 5; i++)
-            {
-                int random = (int)(Math.random() * mundo.getLinks().size()+1);
-                URI uri = new URI(mundo.getLinks().get(random));
+            //This line will print each element from the ArrayList in a new line
+            //bbc.getLinks().forEach(System.out::println);
+            
+            //Accesing a random link and open it in the browser  
+            /*
+                URI uri = new URI(mundo.getLinks().get((int)(Math.random() * mundo.getLinks().size()+1)));
                 Desktop.getDesktop().browse(uri);
-            }*/
+            */
         }
 }

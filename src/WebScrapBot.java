@@ -28,7 +28,13 @@ public class WebScrapBot
 		    links.add(element.attr("href"));
 		}
 		
-		//System.out.println(result);
+		Elements next = doc.select(datos.get(1));
+		for(Element element : next)
+		    if(element.hasClass("ws-search-pagination__link next"))
+		    {
+		        url = url.split("[?]q=")[0] + element.attr("href");
+		        extraer(url, datos);
+		    }
 	}
 	
 	public ArrayList<String> getLinks()
