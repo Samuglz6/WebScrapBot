@@ -9,6 +9,7 @@ public class BBCBot extends WebScrapBot{
         datos = new ArrayList<String>();
         datos.add("div.ws-search-components > div:not(hard-news-unit hard-news-unit--regular faux-block-link) > div:not(hard-news-unit__body) > h3 > a");
         datos.add("div.ws-search-pagination > a");
+        datos.add("ws-search-pagination__link next");
         
         this.extraer(this.getUrl(), datos);
     }

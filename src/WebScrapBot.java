@@ -27,14 +27,33 @@ public class WebScrapBot
 		{
 		    links.add(element.attr("href"));
 		}
+	
 		
 		Elements next = doc.select(datos.get(1));
+		
 		for(Element element : next)
-		    if(element.hasClass("ws-search-pagination__link next"))
+		{
+			if(url.contains("elmundo") && element.text().contains(datos.get(2)))
+			{
+				url = "https:" + element.attr("href");
+				extraer(url, datos);
+				break;
+			}
+		
+		    if(url.contains("bbc") && element.hasClass(datos.get(2)))
 		    {
 		        url = url.split("[?]q=")[0] + element.attr("href");
 		        extraer(url, datos);
+		        break;
+		    } 
+		    
+		    if(url.contains("eldiario") && element.text().contains(datos.get(2)))
+		    {
+		    	url = url.split("/buscador")[0] + element.attr("href");
+		    	extraer(url, datos);
+		    	break;
 		    }
+		}
 	}
 	
 	public ArrayList<String> getLinks()
